@@ -73,7 +73,7 @@ void sgemm_sliced_k_fp32(float *A, float *B, float *C, int M, int K, int N) {
   constexpr int BN = 32;
   dim3 block(BN, BM);
   dim3 grid((N + BN - 1) / BN, (M + BM - 1) / BM);
-  sgemm_sliced_k_f32_kernel<BM, BN, BK><<<grid, block>>>(A, B, C, M, K, N);
+  sgemm_sliced_k_f32_kernel<BM, BK, BN><<<grid, block>>>(A, B, C, M, K, N);
 }
 
 
